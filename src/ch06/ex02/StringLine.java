@@ -17,7 +17,7 @@ public class StringLine
         while (thingScan.hasNext()) {
             System.out.println(thingScan.next());
         }
-        
+        thingScan.close();
         input.close();
     }
 }
