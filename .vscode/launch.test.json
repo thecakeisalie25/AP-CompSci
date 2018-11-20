@@ -1,0 +1,30 @@
+{
+    "run": {
+        "default": "",
+        "items": [
+            {
+                "name": "temp-workfile",
+                "projectName": "temp-workfile",
+                "workingDirectory": "c:\\Users\\Larson Ashcroft\\eclipse-workspace\\temp-workfile",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    },
+    "debug": {
+        "default": "",
+        "items": [
+            {
+                "name": "temp-workfile",
+                "projectName": "temp-workfile",
+                "workingDirectory": "c:\\Users\\Larson Ashcroft\\eclipse-workspace\\temp-workfile",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    }
+}

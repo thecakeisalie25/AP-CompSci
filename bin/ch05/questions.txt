@@ -1,0 +1,36 @@
+1.
+{
+    if 3 are equal, output third one
+    otherwise it might mess up if 2 are equal
+}
+2.
+{
+    if (total == max)
+    {
+        if (total < sum)
+        {
+            System.out.println("total == max and < sum")
+
+        }
+    }
+    else
+    {
+        System.out.println("Total != max)
+    }
+}
+3
+{
+    length == min_length, not length = min_length.
+    Eclipse will yell at you because it's expecting a conditional.
+}
+4
+{
+    apple
+    orange
+    pear
+}
+5
+{
+    lime
+    grape
+}

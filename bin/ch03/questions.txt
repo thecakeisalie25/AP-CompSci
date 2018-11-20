@@ -1,0 +1,34 @@
+3.1 System.out.println(overview.length);
+3.2 System.out.println(overview.substring(7,8))
+3.3 String str = name.toUpperCase
+3.4 String change = original.replace('e', 'j')
+3.5 Quest for the Holy Grail quest for the holy zrail
+3.6 It imports every direct child of java.awt
+3.7:
+{
+    a: 0-19
+    b: 1-8
+    c: 2-13
+    d: 10-44
+    e: -50-50
+}
+3.8
+{
+    Random rand = new Random();
+    rand.nextInt(11)
+    rand.nextInt(401)
+    rand.nextInt(10)  + 1
+    rand.nextInt(400) + 1
+    rand.nextInt(26)  + 25
+    rand.nextInt(26)  - 10
+}
+3.9 num3 = Math.sqrt(num1 + num2)
+3.10 System.out.println(Math.abs(total))
+3.11 
+{
+    DecimalFormat hotpocket = new DecimalFormat();
+    hotpocket.applyPattern("0.###");
+    System.out.println(hotpocket.format(result));
+}
+3.12 System.out.println(Math.pow(input.nextDouble(), 4))
+3.13 enum Sandwich {monday, tuesday, wednesday, thursday, friday, saturday, the_other_one}
