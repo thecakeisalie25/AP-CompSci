@@ -4,7 +4,7 @@ package ch04.ex09;
  * PairOfDice
  * @author Larson Ashcroft
  * @see Die.java
- * @see RollingDice2.java
+ * 
  */
 public class PairOfDice {
 
