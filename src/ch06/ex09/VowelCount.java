@@ -42,7 +42,6 @@ public class VowelCount
         System.out.println(o + " * o");
         System.out.println(u + " * u");
         System.out.println(other + " * other");
-        a++;
         scan.close(); // i hate this
         input.close();
     }
