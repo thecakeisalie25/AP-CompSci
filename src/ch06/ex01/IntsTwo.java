@@ -8,7 +8,6 @@ public class IntsTwo
  * Write a program that reads an integer value and prints the sum of all even integers between 2 and the input value,
  * inclusive. Print an error message if the input value is less than 2. Prompt accordingly.
  * @author Larson Ashcroft
- * <code>Scanner input = new Scanner(System.in);</code>
  */
     public static void main(String[] args)
     {

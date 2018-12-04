@@ -8,7 +8,7 @@ public class UnicodeTable
     {
         Scanner input = new Scanner(System.in);
         
-        for (int i = 36; i < 127; i++) {
+        for (int i = 32; i < 127; i++) {
             System.out.print(i + " = " + Character.toChars(i)[0] + "\t");
             if(i % 5 == 0)
             {

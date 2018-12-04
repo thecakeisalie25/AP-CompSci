@@ -31,6 +31,13 @@ public class VowelCount
                 case "u":
                     u++;
                 break;
+                case "A":
+                case "E":
+                case "I":
+                case "O":
+                case "U":
+                case " ":
+                break;
                 default:
                     other++;
                 break;
