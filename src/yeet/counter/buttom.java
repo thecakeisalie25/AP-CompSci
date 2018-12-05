@@ -9,9 +9,5 @@ public class buttom {
 		frame.getContentPane().add(new PushCounterPanel());
 		frame.pack();
 		frame.setVisible(true);
-		
 	}
-	
-	
-	
 }

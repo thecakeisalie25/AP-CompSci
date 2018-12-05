@@ -26,7 +26,7 @@ public class PushCounterPanel extends JPanel {
 		color = Color.getHSBColor(hue, saturation, luminance);
 		count = 0;
 		bt = new JButton("Change Color");
-	//	bt.setShape(new Circle(1.5));
+		// bt.setShape(new Circle(1.5));
 	//	bt.setSize(10,10);
 		push = new JButton("E");
 		
@@ -60,7 +60,9 @@ public class PushCounterPanel extends JPanel {
 		color = Color.getHSBColor(hue, saturation, luminance);
 		if(event.getSource() == push) {
 			count++;
-		label.setText("Dicks sucked: " + count);
+		label.setText("Sauce on me: " + count);
+		push.setText("Black people: " + count * 2);
+		push.setForeground(color);
 		
 		}
 		if(event.getSource() == bt) {
