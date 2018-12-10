@@ -25,14 +25,19 @@ public class Alterra extends JPanel{
         bcolor5 = BeaconColor.blue;
         cbutton1 = new JButton("Change Color 1");
         cbutton1.addActionListener(new ButtonListener());
+        cbutton1.setForeground(new Color(255,255,255));
         cbutton2 = new JButton("Change Color 2");
         cbutton2.addActionListener(new ButtonListener());
+        cbutton2.setForeground(new Color(255,255,255));
         cbutton3 = new JButton("Change Color 3");
         cbutton3.addActionListener(new ButtonListener());
+        cbutton3.setForeground(new Color(255,255,255));
         cbutton4 = new JButton("Change Color 4");
         cbutton4.addActionListener(new ButtonListener());
+        cbutton4.setForeground(new Color(255,255,255));
         cbutton5 = new JButton("Change Color 5");
         cbutton5.addActionListener(new ButtonListener());
+        cbutton5.setForeground(new Color(255,255,255));
         add(cbutton1);
         add(cbutton2);
         add(cbutton3);
@@ -43,19 +48,19 @@ public class Alterra extends JPanel{
     private class ButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent event){
 
-            if (event.getSource() == bcolor1) {
+            if (event.getSource() == cbutton1) {
                 bcolor1 = cycleColor(bcolor1);
             }
-            if (event.getSource() == bcolor2) {
+            if (event.getSource() == cbutton2) {
                 bcolor2 = cycleColor(bcolor2);
             }
-            if (event.getSource() == bcolor3) {
+            if (event.getSource() == cbutton3) {
                 bcolor3 = cycleColor(bcolor3);
             }
-            if (event.getSource() == bcolor4) {
+            if (event.getSource() == cbutton4) {
                 bcolor4 = cycleColor(bcolor4);
             }
-            if (event.getSource() == bcolor5) {
+            if (event.getSource() == cbutton5) {
                 bcolor5 = cycleColor(bcolor5);
             }
         setColor(bcolor5, cbutton5);
