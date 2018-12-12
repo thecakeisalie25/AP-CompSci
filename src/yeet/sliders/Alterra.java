@@ -16,13 +16,13 @@ public class Alterra extends JPanel {
     private static final long serialVersionUID = 2;
     private JSlider red, green, blue;
     private Color color;
-    private JOptionPane dialog;
+    // private JOptionPane dialog;
     public Alterra(){
         red = new JSlider();
         green = new JSlider();
         blue = new JSlider();
         color = new Color(50, 50, 50);
-        dialog = new JOptionPane("YANK");
+        // dialog = new JOptionPane("YANK");
 
         red.setMaximum(255);
         green.setMaximum(255);
