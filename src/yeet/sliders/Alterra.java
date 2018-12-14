@@ -1,6 +1,8 @@
 package yeet.sliders;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 import javax.swing.JSlider;
@@ -35,6 +37,7 @@ public class Alterra extends JPanel {
         red.addChangeListener(new SliderListener());
         green.addChangeListener(new SliderListener());
         blue.addChangeListener(new SliderListener());
+        colorbox.addActionListener(new TextListener());
 
         red.setOrientation(JSlider.VERTICAL);
         green.setOrientation(JSlider.VERTICAL);
@@ -47,7 +50,7 @@ public class Alterra extends JPanel {
         setBackground(color);
         red.setBackground(new Color(255,0,0));
         green.setBackground(new Color(0,255,0));
-        blue.setBackground(new Color(0,0,255));        
+        blue.setBackground(new Color(0,0,255));
     }
     
     private class SliderListener implements ChangeListener {
@@ -58,12 +61,46 @@ public class Alterra extends JPanel {
             green.setBackground(color);
             blue.setBackground(color);
             
-            String string = Integer.toString(color.getRed(), 16);
-            String string2 = Integer.toString(color.getGreen(), 16);
-            String string3 = Integer.toString(color.getBlue(), 16);
-            String t = "#" + string + string2 + string3;
+            String reds = Integer.toString(color.getRed(), 16);
+            if(reds.length() == 1) reds = "0" + reds;
+            String greens = Integer.toString(color.getGreen(), 16);
+            if(greens.length() == 1) greens = "0" + greens;
+            String blues = Integer.toString(color.getBlue(), 16);
+            if(blues.length() == 1) blues = "0" + blues;
+            String t = "#" + reds + greens + blues;
             colorbox.setText(t.toUpperCase());
             // JOptionPane.showMessageDialog(null, color.getRed() + " " + color.getGreen() + " " + color.getBlue(), "Color Picker.", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+    private class TextListener implements ActionListener{
+        public void actionPerformed(ActionEvent event){
+            String boxString = colorbox.getText();
+            boxString = boxString.replace("#", "");
+            if(boxString.length() != 6)
+            {
+                return;
+            }
+            if(boxString.matches(".*[G-Zg-z].*")){
+                return;
+            }
+            String redhex = boxString.substring(0, 2);
+            String greenhex = boxString.substring(2, 4);
+            String bluehex = boxString.substring(4, 6);
+
+            System.out.println(redhex);
+            System.out.println(greenhex);
+            System.out.println(bluehex);
+
+            color = new Color(Integer.decode("0x" + redhex), Integer.decode("0x" + greenhex), Integer.decode("0x" + bluehex));
+
+            setBackground(color);
+            red.setBackground(color);
+            green.setBackground(color);
+            blue.setBackground(color);
+
+            red.setValue(Integer.decode("0x" + redhex));
+            green.setValue(Integer.decode("0x" + greenhex));
+            blue.setValue(Integer.decode("0x" + bluehex));
         }
     }
 }
