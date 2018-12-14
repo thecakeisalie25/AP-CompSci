@@ -82,8 +82,8 @@ public class Student {
         }
     }
 
-    public int getAverage() {
-        return (testscore1 + testscore2 + testscore3) / 3;
+    public double getAverage() {
+        return (double)(testscore1 + testscore2 + testscore3) / 3;
     }
 
     // -----------------------------------------------------------------

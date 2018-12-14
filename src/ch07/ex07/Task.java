@@ -1,9 +1,9 @@
-package ch07.ex06;
+package ch07.ex07;
 
 /**
  * Task
  */
-public class Task implements Priority, Complexity{
+public class Task implements Priority, Complexity, Comparable<Task>{
 
     private String name;
     private int priority;
@@ -13,6 +13,11 @@ public class Task implements Priority, Complexity{
         setName(name);
         setPriority(priority);
         setComplexity(complexity);
+    }
+    
+    @Override
+    public int compareTo(Task o) {
+        return priority - o.getPriority();
     }
     
     /**

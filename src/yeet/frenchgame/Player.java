@@ -1,21 +1,32 @@
 package yeet.frenchgame;
 
 import javax.swing.JOptionPane;
+
+import java.util.Comparator;
 import java.util.Random;
 /**
  * Player
  */
-public class Player {
+public class Player implements Comparable<Player>, Comparator<Player> {
 
     private int score, difficulty;
     private String name;
     private Random rand = new Random();
-    private static final String DIFFICUTY_TEXT = "Please choose a difficulty:\n\nEasy: 1-99 (10 pts)\nMedium: 1-999 (15 pts)\nHard: 1-999,999 (25 pts)\n\nYou can change this later.";
+    private static final String DIFFICUTY_TEXT = "Please choose a difficulty:\n\nEasy: 1-69 (10 pts)\nMedium: 1-999 (15 pts)\nHard: 1-999,999 (25 pts)\n\nYou can change this later.";
     
     public Player(String name) {
         setScore(0);
         setName(name);
         changeDifficulty();
+    }
+    public Player(){ // ONLY FOR SORTING
+
+    }
+    public int compare(Player p1, Player p2) {
+        return p2.getScore() - p1.getScore();
+    }
+    public int compareTo(Player p2) {
+        return score - p2.getScore();
     }
     public void changeDifficulty() {
         String[] options = {"Easy","Medium","Hard"};
@@ -35,7 +46,7 @@ public class Player {
         switch(difficulty)
         {
             case 0:
-                question = rand.nextInt(99) + 1;
+                question = rand.nextInt(69) + 1;
                 break;
             case 1:
                 question = rand.nextInt(999) + 1;
@@ -45,7 +56,7 @@ public class Player {
                 break;
             default: question = 1024; System.err.println("Error in question");
         }
-        String answer = JOptionPane.showInputDialog(null, getName() + ": Please translate the following:\n" + Converter.convert6Digit(question), difficultyString + " question for " + getName() + ".", JOptionPane.QUESTION_MESSAGE);
+        String answer = JOptionPane.showInputDialog(null, getName() + ": Please translate the following into numerals:\n" + Converter.convert6Digit(question), difficultyString + " question for " + getName() + ".", JOptionPane.QUESTION_MESSAGE);
         if(Integer.toString(question).equals(answer))
         {
             score += difficulty == 0 ? 10 : difficulty == 1 ? 15 : 25;

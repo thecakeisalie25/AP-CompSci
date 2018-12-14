@@ -15,7 +15,7 @@ public class StudentBody {
         Student john = new Student("John", "Smith", jHome, school, 100, 100, 89);
 
         Address mHome = new Address("123 Main Street", "Euclid", "OH", 44132);
-        Student marsha = new Student("Marsha", "Jones", mHome, school, 121, 80, 90);
+        Student marsha = new Student("Marsha", "Jones", mHome, school, 120, 80, 90);
 
         System.out.println(john);
         System.out.println();

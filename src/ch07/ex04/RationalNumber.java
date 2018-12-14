@@ -6,7 +6,7 @@ package ch07.ex04;
 //  Represents one rational number with a numerator and denominator.
 //********************************************************************
 
-public class RationalNumber implements Comparable<RationalNumber>{
+public class RationalNumber implements Comparable<RationalNumber> {
     private int numerator, denominator;
 
     // -----------------------------------------------------------------
@@ -28,11 +28,15 @@ public class RationalNumber implements Comparable<RationalNumber>{
 
         reduce();
     }
+
     public int compareTo(RationalNumber num) {
-        if (Math.abs(((double)numerator/denominator) - ((double)num.getNumerator() / num.getDenominator())) < 0.0001){
+        if (Math.abs(
+                ((double) numerator / denominator) - ((double) num.getNumerator() / num.getDenominator())) < 0.0001) {
             return 0;
         }
-        return (int)Math.round(((double)numerator/denominator) - ((double)num.getNumerator() / num.getDenominator()));
+        return (int) Math
+                .signum(((double) numerator / denominator) - ((double) num.getNumerator() / num.getDenominator())
+                * 1000);
     }
 
     // -----------------------------------------------------------------

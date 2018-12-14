@@ -68,17 +68,17 @@ public class Student {
     
     public void setTestScore(int index, int testscore) {
         switch (index) {
-        case 1:
-            this.testscore1 = testscore;
-        case 2:
-            this.testscore2 = testscore;
-        case 3:
-            this.testscore3 = testscore;
+            case 1:
+                this.testscore1 = testscore;
+            case 2:
+                this.testscore2 = testscore;
+            case 3:
+                this.testscore3 = testscore;
         }
     }
 
-    public int getAverage() {
-        return (testscore1 + testscore2 + testscore3) / 3;
+    public double getAverage() {
+        return (double)(testscore1 + testscore2 + testscore3) / 3;
     }
 
     // -----------------------------------------------------------------

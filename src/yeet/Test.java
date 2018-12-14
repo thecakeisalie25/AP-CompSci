@@ -8,6 +8,8 @@ public class Test
     {
         Scanner input = new Scanner(System.in);
         
+        
+
         input.close();
     }
 }

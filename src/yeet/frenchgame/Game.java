@@ -44,9 +44,15 @@ public class Game
             for (Player e : players) {
                 leaderboard+= "\n" + e;
             }
-            JOptionPane.showMessageDialog(null, leaderboard);          
+            JOptionPane.showMessageDialog(null, leaderboard);
         }
-        
+        players.sort(new Player());
+        String leaderboard = "Final Scores:\n";
+        int c = 1;
+        for (Player e : players) {
+            leaderboard += "\n" + c++ + ". " + e;
+        }
+        JOptionPane.showMessageDialog(null, leaderboard);
         input.close();
     }
 }

@@ -2,9 +2,9 @@ package yeet.sliders;
 
 import java.awt.Color;
 
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
+import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -15,14 +15,14 @@ import javax.swing.event.ChangeListener;
 public class Alterra extends JPanel {
     private static final long serialVersionUID = 2;
     private JSlider red, green, blue;
+    private JTextField colorbox;
     private Color color;
-    // private JOptionPane dialog;
     public Alterra(){
         red = new JSlider();
         green = new JSlider();
         blue = new JSlider();
         color = new Color(50, 50, 50);
-        // dialog = new JOptionPane("YANK");
+        colorbox = new JTextField("#323232");
 
         red.setMaximum(255);
         green.setMaximum(255);
@@ -43,6 +43,7 @@ public class Alterra extends JPanel {
         add(red);
         add(green);
         add(blue);
+        add(colorbox);
         setBackground(color);
         red.setBackground(new Color(255,0,0));
         green.setBackground(new Color(0,255,0));
@@ -56,6 +57,12 @@ public class Alterra extends JPanel {
             red.setBackground(color);
             green.setBackground(color);
             blue.setBackground(color);
+            
+            String string = Integer.toString(color.getRed(), 16);
+            String string2 = Integer.toString(color.getGreen(), 16);
+            String string3 = Integer.toString(color.getBlue(), 16);
+            String t = "#" + string + string2 + string3;
+            colorbox.setText(t.toUpperCase());
             // JOptionPane.showMessageDialog(null, color.getRed() + " " + color.getGreen() + " " + color.getBlue(), "Color Picker.", JOptionPane.INFORMATION_MESSAGE);
         }
     }
