@@ -1,4 +1,4 @@
-package yeet.sliders;
+package yeet.sliderslayout;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -15,7 +15,8 @@ import javax.swing.event.ChangeListener;
  */
 
 public class Alterra extends JPanel {
-    private static final long serialVersionUID = 2;
+    private static final long serialVersionUID = 4;
+    private JPanel textPanel = new JPanel();
     private JSlider red, green, blue;
     private JTextField colorbox;
     private Color color;
@@ -46,8 +47,9 @@ public class Alterra extends JPanel {
         add(red);
         add(green);
         add(blue);
-        colorbox.setLocation(red.getHeight(), red.getHeight());
-        add(colorbox);
+        // colorbox.setLocation(red.getHeight(), red.getHeight());
+        textPanel.add(colorbox);
+        add(textPanel);
         setBackground(color);
         red.setBackground(new Color(255,0,0));
         green.setBackground(new Color(0,255,0));

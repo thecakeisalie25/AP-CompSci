@@ -1,0 +1,27 @@
+create yeetzi class 
+    roll each
+    if there are more than one of a single value, save those
+    reroll the rest
+    after second roll score += matching on round 2 * 10
+    after 5 games, if score >= 1000 you win
+    otherwise, lose
+
+    print live states of the game to stdout:
+        die values for first round
+        saved values
+        die values for round two
+        saved values = 
+        total round points
+        after 5 games, points, win, lose
+    
+    do you want to play again?
+      y
+    > n <
+
+simulated game: 
+[1] [2] [4] [6] [4]
+Saved: 4 + 4 
+[3] [6] [4] [3] [4]
+Saved: 3 + 4 + 3 + 4 = 14
+14 * 10 = 140
+score += 140
