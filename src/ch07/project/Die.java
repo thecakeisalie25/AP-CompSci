@@ -91,4 +91,16 @@ public class Die {
             }
         }
     }
+
+    public void flip() {
+        if(value == 6)
+        {
+            value = 0;
+        }
+        value++;
+    }
+    @Override
+    public String toString() {
+        return new Integer(value).toString();
+    }
 }

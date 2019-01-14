@@ -33,6 +33,15 @@
         },
         {
             "type": "java",
+            "name": "Launch in Powershell",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "externalTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "stopOnEntry": false,
+        },
+        {
+            "type": "java",
             "name": "Debug (Launch)",
             "request": "launch",
             "cwd": "${workspaceFolder}",
