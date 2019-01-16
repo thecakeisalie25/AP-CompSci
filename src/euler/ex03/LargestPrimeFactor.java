@@ -12,8 +12,12 @@ public class LargestPrimeFactor
         final long TEST_NUM = Long.decode("600851475143");
         long r = 0;
         System.out.println(TEST_NUM);
-        for (long e : numFactors(TEST_NUM)) {
-            if (e > r && isPrime(e)) {
+        ArrayList<Long> factors = getFactors(TEST_NUM);
+        factors.sort(null);
+        System.out.println(factors);
+        for (long e : factors) {
+            if(isPrime(e))
+            {
                 r = e;
             }
         }
@@ -22,21 +26,22 @@ public class LargestPrimeFactor
     }
     
     private static boolean isPrime(long n) {
-        for (long i = 2; i < n; i++) {
+        for (long i = 2; i < Math.round(Math.sqrt(n)); i++) {
+            // System.out.println("Checking prime: " + i + " of " + n);
             if (n % i == 0 || n <= 1) {
-                System.out.println("Checking prime: " + i + " of " + n);
                 return false;
             }
         }
         return true;
     }
     
-    public static ArrayList<Long> numFactors(long n) {
+    public static ArrayList<Long> getFactors(long n) {
         ArrayList<Long> r = new ArrayList<Long>();
-        for (long i = 1; i <= n; i++) {
-            System.out.println("Checking factor: " + i + " of " + n);
+        for (long i = 1; i <= Math.round(Math.sqrt(n)); i++) {
+            // System.out.println("Checking factor: " + i + " of " + Math.round(Math.sqrt(n)));
             if (n % i == 0) {
                 r.add(i);
+                r.add(n/i);
             }
         }
         return r;

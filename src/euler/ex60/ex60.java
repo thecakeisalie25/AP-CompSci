@@ -1,9 +1,12 @@
 package euler.ex60;
 
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ex60 {
+    public static ArrayList<Long> primes = new ArrayList<Long>();
+    public static ArrayList<Long> antiprimes = new ArrayList<Long>();
     public static void main(String[] args) throws InterruptedException {
         Scanner input = new Scanner(System.in);
         int[] solution = new int[5];
@@ -19,20 +22,22 @@ public class ex60 {
             if (!isPrime(i)) {
                 continue;
             }
+            System.out.println(i);
+            // System.out.println(i);
             for (int j = i - 1; j != 5; j--) {
                 if (!isPrime(j) || !concatPrimes(i, j)) {
                     continue;
                 }
                 for (int k = j - 1; k != 4; k--) {
-                    if (!isPrime(k) || !concatPrimes(j, k)) {
+                    if (!isPrime(k) || !concatPrimes(i, j, k)) {
                         continue;
                     }
                     for (int l = k - 1; l != 3; l--) {
-                        if (!isPrime(l) || !concatPrimes(k, l)) {
+                        if (!isPrime(l) || !concatPrimes(i, j, k, l)) {
                             continue;
                         }
                         for (int m = l - 1; m != 2; m--) {
-                            if (!isPrime(m) || !concatPrimes(l, m)) {
+                            if (!isPrime(m)) {
                                 continue;
                             }
                             if (concatPrimes(i, j, k, l, m)) {
@@ -51,8 +56,8 @@ public class ex60 {
                                 System.out.println("ENTER INTO PE: " + (i + j + k + l + m));
                                 
                             } else {
-                                System.out.println("Failed: {" + i + ", " + j + ", " + k + ", " + l + ", " +
-                                m + "}");
+                                // System.out.println("Failed: {" + i + ", " + j + ", " + k + ", " + l + ", " +
+                                // m + "}");
                                 // Thread.sleep(1);
                             }
                         }
@@ -126,7 +131,69 @@ public class ex60 {
             return false;
         return true;
     }
+    
+    private static boolean concatPrimes(int a, int b, int c, int d) {
+        // if (!isPrime(a) || !isPrime(b) || !isPrime(c) || !isPrime(d) || !isPrime(e))
+        // {
+        // return false;
+        // }
+        if (a == b || a == c || a == d || b == c || b == d ) {
+            return false;
+        }
+        if (!isPrime(Integer.decode("" + a + b)))
+            return false;
+        if (!isPrime(Integer.decode("" + a + c)))
+            return false;
+        if (!isPrime(Integer.decode("" + a + d)))
+            return false;
 
+        if (!isPrime(Integer.decode("" + b + a)))
+            return false;
+        if (!isPrime(Integer.decode("" + b + c)))
+            return false;
+        if (!isPrime(Integer.decode("" + b + d)))
+            return false;
+
+        if (!isPrime(Integer.decode("" + c + a)))
+            return false;
+        if (!isPrime(Integer.decode("" + c + b)))
+            return false;
+        if (!isPrime(Integer.decode("" + c + d)))
+            return false;
+
+        if (!isPrime(Integer.decode("" + d + a)))
+            return false;
+        if (!isPrime(Integer.decode("" + d + b)))
+            return false;
+        if (!isPrime(Integer.decode("" + d + c)))
+            return false;
+        return true;
+    }
+
+    private static boolean concatPrimes(int a, int b, int c) {
+        // if (!isPrime(a) || !isPrime(b) || !isPrime(c) || !isPrime(d) || !isPrime(e))
+        // {
+        // return false;
+        // }
+        if (a == b || a == c || b == c ) {
+            return false;
+        }
+        if (!isPrime(Integer.decode("" + a + b)))
+            return false;
+        if (!isPrime(Integer.decode("" + a + c)))
+            return false;
+
+        if (!isPrime(Integer.decode("" + b + a)))
+            return false;
+        if (!isPrime(Integer.decode("" + b + c)))
+            return false;
+
+        if (!isPrime(Integer.decode("" + c + a)))
+            return false;
+        if (!isPrime(Integer.decode("" + c + b)))
+            return false;
+        return true;
+    }
     private static boolean concatPrimes(int a, int b) {
         if(a == b)
             return false;
@@ -139,12 +206,18 @@ public class ex60 {
         return true;
     }
 
-    private static boolean isPrime(int n) {
-        for (int i = 2; i < n; i++) {
+    private static boolean isPrime(long n) {
+        int pindex = primes.indexOf(n);
+        int apindex = antiprimes.indexOf(n);
+        if(pindex != -1) return true;
+        if(apindex != -1) return false;
+        for (long i = 2; i < Math.round(Math.sqrt(n)); i++) {
             if (n % i == 0 || n <= 1) {
+                antiprimes.add(n);
                 return false;
             }
         }
+        primes.add(n);
         return true;
     }
 }

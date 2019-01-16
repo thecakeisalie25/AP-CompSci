@@ -39,11 +39,11 @@ public class DieCup {
             e.setSaved(false);
         }
     }
-    
+
     public ArrayList<Die> getHeldDice() {
         ArrayList<Die> held = new ArrayList<Die>();
         for (Die e : dice) {
-            if(e.isSaved()){
+            if (e.isSaved()) {
                 held.add(e);
             }
         }
@@ -57,11 +57,11 @@ public class DieCup {
         }
         return held;
     }
-    
+
     public static int calculateScore(ArrayList<Integer> held) {
         int score = 0;
         for (int e : held) {
-            score+=e;
+            score += e;
         }
         return score * 10;
     }
