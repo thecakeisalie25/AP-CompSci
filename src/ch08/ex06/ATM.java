@@ -18,7 +18,16 @@ public class ATM {
         // System.out.println(pinOrName);
         if (pinOrName.toLowerCase().contains("new")) {
             createAccount();
-        } else {
+        }
+        else if(pinOrName == "int")
+        {
+            for (Account e : accounts) {
+                e.calculateInterest();
+            }
+            System.out.println("Interest applied.");
+            mainScreen();
+        }
+        else {
             // System.out.println("hit else");
             try{
 
@@ -53,6 +62,7 @@ public class ATM {
         }
         accounts.add(new Account(cash, inpin, name));
         System.out.println("Account created.");
+        input.nextLine();
         mainScreen();
     }
 
@@ -71,12 +81,14 @@ public class ATM {
                         System.out.print("> ");
                         double deposit = input.nextDouble();
                         e.deposit(deposit);
+                        input.nextLine();
                         break;
                     case "withdraw":
                         System.out.println("How much would you like to withdraw?");
                         System.out.print("> ");
                         double withdraw = input.nextDouble();
                         e.withdraw(withdraw);
+                        input.nextLine();
                         break;
                     case "balance":
                         System.out.println("Your balance is " + e.getAccountBalance());
