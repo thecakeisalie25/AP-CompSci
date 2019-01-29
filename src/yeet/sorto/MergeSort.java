@@ -21,7 +21,7 @@ public class MergeSort
         System.out.println(sort(data));
         for (int e : sort(data)) {
             System.out.println("==" + e + "==");
-            Thread.sleep(1); // required for printing in vscode terminal, works fine without i think.
+            // Thread.sleep(1); // required for printing in vscode terminal, works fine without i think.
         } input.close();
     } 
     private static ArrayList<Integer> sort(ArrayList<Integer> list) {

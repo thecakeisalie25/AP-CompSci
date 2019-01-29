@@ -7,6 +7,9 @@ import javax.swing.*;
 import java.util.Random;
 
 public class PushCounterPanel extends JPanel {
+	public static void main(String[] args) {
+		buttom.main(args);
+	}
 	private static final long serialVersionUID = 457689976;
 	private int count;
 	private JButton push ;
@@ -61,7 +64,7 @@ public class PushCounterPanel extends JPanel {
 		if(event.getSource() == push) {
 			count++;
 		label.setText("Sauce on me: " + count);
-		push.setText("Black people: " + count * 2);
+		push.setText("eat people: " + count * 2);
 		push.setForeground(color);
 		
 		}

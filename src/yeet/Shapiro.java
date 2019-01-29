@@ -39,6 +39,7 @@ public class Shapiro
         for (ArrayList<String> e : text) {
             System.out.print(e.get(rand.nextInt(e.size())));
         }
+        System.out.println();
         input.close();
     }
 }

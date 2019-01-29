@@ -21,10 +21,10 @@ public class ReadInts
         }
         System.out.println("--- COUNTS ---");
         for (int i = 0; i < 51; i++) {
-            String yank = "";
-            for (int j = 0; j < counts[i]; j++) {
-                yank += "*";
-            }
+            // String yank = "";
+            // for (int j = 0; j < counts[i]; j++) {
+            //     yank += "*";
+            // }
             System.out.println(i + " | " + counts[i]);
         }
         input.close();
