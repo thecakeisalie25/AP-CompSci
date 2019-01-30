@@ -5,12 +5,18 @@ import java.util.Random;
         
 public class DeckOfCards
 {
-    ArrayList<Card> cards = new ArrayList<Card>();
-    ArrayList<Card> shuf = new ArrayList<Card>();
+    private ArrayList<Card> cards = new ArrayList<Card>();
+    private ArrayList<Card> shuf = new ArrayList<Card>();
     Random rand = new Random();
 
     public static void main(String[] args) {
-        System.out.println(new DeckOfCards());
+        DeckOfCards x = new DeckOfCards();
+        // System.out.println(x);
+        x.shuffle();
+        System.out.println(x);
+        System.out.println("Top card is: " + x.pop());
+        System.out.println("Top card is: " + x.pop());
+        System.out.println("Top card is: " + x.pop());
     }
 
     public DeckOfCards() {
@@ -19,10 +25,18 @@ public class DeckOfCards
         }
     }
 
+    public Card pop() {
+        Card remove = cards.remove(0);
+        cards.add(remove);
+        return remove;
+    }
+
     public void shuffle() {
         for (int i = 0; i < 52; i++) {
-            
+            shuf.add(cards.remove(rand.nextInt(cards.size())));
         }
+        cards = shuf;
+        shuf = new ArrayList<Card>();
     }
 
     @Override
