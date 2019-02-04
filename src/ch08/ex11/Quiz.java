@@ -1,4 +1,4 @@
-package ch08.ex10;
+package ch08.ex11;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -30,12 +30,12 @@ public class Quiz
     private void giveQuestions(int minValue, int maxValue) {
         int score = 0;
         for (Question e : questions) {
-            // if (1 == 1){
+            if (e.getComplexity() >= minValue && e.getComplexity() <= maxValue){
                 System.out.println("Q: " + e.getQuestion());
                 if(input.nextLine().equalsIgnoreCase(e.getAnswer())){
                     score++;
                 }
-            // }
+            }
         }
         System.out.println("Score: " + score + ".");
     }
