@@ -1,5 +1,6 @@
 package euler.ex60;
 
+import java.math.BigInteger;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -7,14 +8,14 @@ import java.util.Scanner;
 public class ex60 {
     public static ArrayList<Long> primes = new ArrayList<Long>();
     public static ArrayList<Long> antiprimes = new ArrayList<Long>();
+
     public static void main(String[] args) throws InterruptedException {
         Scanner input = new Scanner(System.in);
         int[] solution = new int[5];
         boolean foundSolution = false;
         int starting = 6;
-        if(args.length != 0)
-        {
-           starting = Integer.decode(args[0]);
+        if (args.length != 0) {
+            starting = Integer.decode(args[0]);
         }
         Time start = new Time(System.currentTimeMillis());
         Time end;
@@ -22,7 +23,6 @@ public class ex60 {
             if (!isPrime(i)) {
                 continue;
             }
-            System.out.println(i);
             // System.out.println(i);
             for (int j = i - 1; j != 5; j--) {
                 if (!isPrime(j) || !concatPrimes(i, j)) {
@@ -46,15 +46,15 @@ public class ex60 {
                                 solution[2] = k;
                                 solution[3] = l;
                                 solution[4] = m;
-                                //SUCCEEDED: {8389, 6733, 5701, 5197, 13}
-                                //ENTER INTO PE: 26033
+                                // SUCCEEDED: {8389, 6733, 5701, 5197, 13}
+                                // ENTER INTO PE: 26033
                                 foundSolution = true;
                                 end = new Time(System.currentTimeMillis());
                                 System.out.println(end.getTime() - start.getTime() + " ms to execute.");
                                 System.out
                                         .println("SUCCEEDED: {" + i + ", " + j + ", " + k + ", " + l + ", " + m + "}");
                                 System.out.println("ENTER INTO PE: " + (i + j + k + l + m));
-                                
+
                             } else {
                                 // System.out.println("Failed: {" + i + ", " + j + ", " + k + ", " + l + ", " +
                                 // m + "}");
@@ -79,8 +79,9 @@ public class ex60 {
      * @return true if this satisfies the problem, otherwise false.
      */
     private static boolean concatPrimes(int a, int b, int c, int d, int e) {
-        // if (!isPrime(a) || !isPrime(b) || !isPrime(c) || !isPrime(d) || !isPrime(e)) {
-            // return false;
+        // if (!isPrime(a) || !isPrime(b) || !isPrime(c) || !isPrime(d) || !isPrime(e))
+        // {
+        // return false;
         // }
         if (a == b || a == c || a == d || a == e || b == c || b == d || b == e || c == d || c == e || d == e) {
             return false;
@@ -131,13 +132,13 @@ public class ex60 {
             return false;
         return true;
     }
-    
+
     private static boolean concatPrimes(int a, int b, int c, int d) {
         // if (!isPrime(a) || !isPrime(b) || !isPrime(c) || !isPrime(d) || !isPrime(e))
         // {
         // return false;
         // }
-        if (a == b || a == c || a == d || b == c || b == d ) {
+        if (a == b || a == c || a == d || b == c || b == d) {
             return false;
         }
         if (!isPrime(Integer.decode("" + a + b)))
@@ -175,7 +176,7 @@ public class ex60 {
         // {
         // return false;
         // }
-        if (a == b || a == c || b == c ) {
+        if (a == b || a == c || b == c) {
             return false;
         }
         if (!isPrime(Integer.decode("" + a + b)))
@@ -194,11 +195,12 @@ public class ex60 {
             return false;
         return true;
     }
+
     private static boolean concatPrimes(int a, int b) {
-        if(a == b)
+        if (a == b)
             return false;
         // if(!isPrime(a) || !isPrime(b))
-            // return false;
+        // return false;
         if (!isPrime(Integer.decode("" + a + b)))
             return false;
         if (!isPrime(Integer.decode("" + b + a)))
@@ -207,17 +209,6 @@ public class ex60 {
     }
 
     private static boolean isPrime(long n) {
-        int pindex = primes.indexOf(n);
-        int apindex = antiprimes.indexOf(n);
-        if(pindex != -1) return true;
-        if(apindex != -1) return false;
-        for (long i = 2; i < Math.round(Math.sqrt(n)); i++) {
-            if (n % i == 0 || n <= 1) {
-                antiprimes.add(n);
-                return false;
-            }
-        }
-        primes.add(n);
-        return true;
+        return BigInteger.valueOf(n).isProbablePrime(7);
     }
 }
