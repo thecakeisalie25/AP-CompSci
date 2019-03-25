@@ -6,13 +6,14 @@ package ch09.ex02;
 public abstract class Employee {
     public abstract void doWork(int workToDo);
     
+    private int money;
     /**
      * @return the money
      */
     public int getMoney() {
         return money;
     }
-
+    
     /**
      * @param money the money to set
      */
@@ -20,7 +21,6 @@ public abstract class Employee {
         this.money = money;
     }
 
-    private int money;
     public Employee() {
         System.out.println(this.getClass().getName() + " hired.");
     }

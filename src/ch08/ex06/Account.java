@@ -50,8 +50,8 @@ public class Account {
     }
 
     public double withdraw(double cash) {
-        if (cash > accountBalance) {
-            System.out.println("Sorry, that's more than you have.");
+        if (cash < 0 || cash > accountBalance) {
+            System.out.println("Sorry, that's an error.");
             return accountBalance;
         }
         accountBalance-=cash;
@@ -63,7 +63,7 @@ public class Account {
             System.out.println("Sorry, that's a negative number.");
             return accountBalance;
         }
-        accountBalance -= cash;
+        accountBalance += cash;
         return accountBalance;
     }
 

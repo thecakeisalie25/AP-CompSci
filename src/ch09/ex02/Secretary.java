@@ -3,16 +3,16 @@ package ch09.ex02;
 /**
  * Doctor
  */
-public class Doctor extends Employee {
+public class Secretary extends Employee {
 
-    public Doctor() {
+    public Secretary() {
         super();
     }
 
     @Override
     public void doWork(int workToDo) {
         for (int i = 0; i < workToDo; i++) {
-            System.out.println("Surgery");
+            System.out.println("Planned appointment");
         }
     }
     

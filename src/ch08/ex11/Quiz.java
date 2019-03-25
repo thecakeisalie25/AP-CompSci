@@ -7,7 +7,7 @@ public class Quiz
 {
     public static void main(String[] args) {
         Quiz foo = new Quiz();
-        foo.add(new Question("Yeet", "Yank", 10));
+        foo.add(new Question("Yeet", "Yank", 1));
         foo.add(new Question("q", "a", 1));
         foo.add(new Question("how many is purple", "e", 1000));
         foo.add(new Question("q2", "a2", 20));

@@ -15,7 +15,7 @@ public class MeanAndStDiv
         while (input.hasNextInt()) {
             ints.add(input.nextInt());
         }
-        int mean = 0;
+        double mean = 0;
         for (int e : ints) {
             mean+=e;
         }

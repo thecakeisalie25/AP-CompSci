@@ -8,6 +8,7 @@ public class DeckOfCards
     private ArrayList<Card> cards = new ArrayList<Card>();
     private ArrayList<Card> shuf = new ArrayList<Card>();
     Random rand = new Random();
+    int fresh = 0;
 
     public static void main(String[] args) {
         DeckOfCards x = new DeckOfCards();
@@ -28,10 +29,13 @@ public class DeckOfCards
     public Card pop() {
         Card remove = cards.remove(0);
         cards.add(remove);
+        fresh--;
+        System.out.println(fresh + " cards remaining");
         return remove;
     }
 
     public void shuffle() {
+        fresh = 52;
         for (int i = 0; i < 52; i++) {
             shuf.add(cards.remove(rand.nextInt(cards.size())));
         }

@@ -18,12 +18,18 @@ public class Hospital {
                 }
             }
         }
-        int s = 0;
-        for (int e : hours[0][0]) {
-            s+=e;
+        int c = 0;
+        for (int[][] e : hours) {
+            for (int[] f : e) {
+                c++;
+                int s = 0;
+                for (int g : f) {
+                    s+=g;
+                }
+                System.out.println(s + " customers on day " + c + ".");
+            }
         }
-        System.out.println(s + " Customers on day 1");
-        
+            
         input.close();
     }
 }

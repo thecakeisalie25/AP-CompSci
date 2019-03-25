@@ -5,7 +5,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class ex60 {
+public class FivePrimes {
     public static ArrayList<Long> primes = new ArrayList<Long>();
     public static ArrayList<Long> antiprimes = new ArrayList<Long>();
 
