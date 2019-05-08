@@ -36,6 +36,7 @@ public class Shapiro
             i++;
         }
         Random rand = new Random();
+        System.out.println();
         for (ArrayList<String> e : text) {
             System.out.print(e.get(rand.nextInt(e.size())));
         }

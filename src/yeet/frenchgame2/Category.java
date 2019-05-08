@@ -8,17 +8,19 @@ import java.util.Random;
 public abstract class Category {
 
     protected Random rand;
-    protected static String description;
+    protected String description;
 
     public Category() {
         rand = new Random();
     }
 
-    public abstract Question askQuestion(int Difficulty);
-    public static String getDescription() {
+    public abstract Question askQuestion();
+    public String getDescription() {
         return description;
     }
-    public static boolean testAnswer(Question question, String answer){
-        return question.getAnswer() == answer;
+    public boolean testAnswer(Question question, String answer){
+        String fQuestion = question.getAnswer().toUpperCase();
+        String fAnswer = answer.toUpperCase();
+        return fQuestion.equals(fAnswer);
     }
 }

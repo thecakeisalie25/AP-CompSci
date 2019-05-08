@@ -18,7 +18,7 @@ public class Roster
         for (Employee e : employees) {
             e.doWork(5);
         }
-
+        
         input.close();
     }
 }

@@ -33,7 +33,7 @@
         },
         {
             "type": "java",
-            "name": "Launch in Powershell",
+            "name": "Launch in term",
             "request": "launch",
             "cwd": "${workspaceFolder}",
             "console": "externalTerminal",
