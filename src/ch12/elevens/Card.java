@@ -75,8 +75,41 @@ public class Card implements Comparable<Card>
     }
 
     //! Fix method.
-    public ImageIcon name() {
-        return new ImageIcon();
+    public ImageIcon getIcon() {
+        String path = "src/ch12/elevens/cards/";
+        switch (value) {
+            case 1:
+                path += "ace";
+            break;
+            case JACK:
+                path += "jack";
+            break;
+            case QUEEN:
+                path += "queen";
+            break;
+            case KING:
+                path += "king";
+            break;
+            default:
+                path += String.valueOf(value);
+        }
+        path += "_of_";
+        switch (suit) {
+            case SPADE:
+                path += "spades";
+            break;
+            case HEART:
+                path += "hearts";
+            break;
+            case CLUB:
+                path += "clubs";
+            break;
+            case DIAMOND:
+                path += "diamonds";
+            break;
+        }
+        path += ".png";
+        return new ImageIcon(path);
     }
     public boolean isRoyal(){
         switch (value) {

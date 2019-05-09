@@ -35,9 +35,10 @@ public class Elevens extends JFrame {
             e1.printStackTrace();
         }
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setTitle("Elevens - Larson Ashcroft");
         deck = new Deck();
         frame.add(new Container());
-        frame.setMinimumSize(new Dimension(512, 512));
+        frame.setMinimumSize(new Dimension(512, 670));
         frame.pack();
         MenuBar menuBar = new MenuBar();
         Menu fileMenu = new Menu("File");
@@ -75,7 +76,7 @@ public class Elevens extends JFrame {
             rulesMenu.add(o);
         }
 
-        MenuItem cheat = new MenuItem("Gravity? Who gives a crap about Gravity?");
+        MenuItem cheat = new MenuItem("Cheat");
         cheat.setActionCommand("cheat");
         cheat.addActionListener(actoBoy);
 
@@ -98,6 +99,8 @@ public class Elevens extends JFrame {
             cardButtons[i] = new CardButton();
             cardButtons[i].setSize(50, 50);
             stuffPanel.add(cardButtons[i]);
+            cardButtons[i].addActionListener(actoBoy);
+            cardButtons[i].setActionCommand("submit");
         }
         stuffPanel.setLayout(grid);
         frame.add(stuffPanel);
@@ -121,9 +124,10 @@ public class Elevens extends JFrame {
                         e.setText(e.getText());
                     }
                     score.setLabel(deck.getCount() + " cards left");
+                    
                 }
             } catch (Exception ex) {
-                e.setText("Yeeeet!");
+                e.setText("Nice job!");
                 e.setEnabled(false);
             }
         }
@@ -159,6 +163,7 @@ public class Elevens extends JFrame {
             case "reset":
                 for (CardButton e : cardButtons) {
                     e.clear();
+                    e.setEnabled(true);
                 }
                 deck = new Deck();
                 setCards();
@@ -182,7 +187,7 @@ public class Elevens extends JFrame {
                     setCards();
                 } else {
                     for (CardButton e : cardButtons) {
-                        e.setSelected(false);
+                        // e.setSelected(false);
                     }
                 }
 

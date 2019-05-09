@@ -1,5 +1,8 @@
 package ch12.elevens;
 
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
 import javax.swing.JToggleButton;
 
 
@@ -9,6 +12,10 @@ import javax.swing.JToggleButton;
  */
 public class CardButton extends JToggleButton {
 
+    private static final int heart = 175;
+
+    private static final int width = 130;
+
     private static final long serialVersionUID = 1L;
 
     private Card card = null;
@@ -16,6 +23,7 @@ public class CardButton extends JToggleButton {
     public void clear() {
         super.setSelected(false);
         super.setText("");
+        super.setIcon(null);
         card = null;
     }
 
@@ -29,12 +37,12 @@ public class CardButton extends JToggleButton {
     public Card getCard() {
         return card;
     }
-    
+
     /**
      * @param card the card to set
      */
     public void setCard(Card card) {
         this.card = card;
-        super.setText(card.toString());
+        super.setIcon(new ImageIcon(card.getIcon().getImage().getScaledInstance(width, heart, Image.SCALE_SMOOTH)));
     }
 }
