@@ -12,7 +12,7 @@ import javax.swing.JToggleButton;
  */
 public class CardButton extends JToggleButton {
 
-    private static final int heart = 175;
+    private static final int height = 175;
 
     private static final int width = 130;
 
@@ -43,6 +43,11 @@ public class CardButton extends JToggleButton {
      */
     public void setCard(Card card) {
         this.card = card;
-        super.setIcon(new ImageIcon(card.getIcon().getImage().getScaledInstance(width, heart, Image.SCALE_SMOOTH)));
+        super.setIcon(new ImageIcon(card.getIcon().getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH)));
+    }
+
+    public void setCard() {
+        this.card = null;
+        super.setIcon(new ImageIcon(Card.getNullIcon().getImage()));
     }
 }

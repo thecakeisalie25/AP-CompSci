@@ -127,13 +127,13 @@ public class Elevens extends JFrame {
                     
                 }
             } catch (Exception ex) {
-                e.setText("Nice job!");
-                e.setEnabled(false);
+                e.setCard();
+                // e.setEnabled(false);
             }
         }
         boolean winner = true;
         for (CardButton e : cardButtons) {
-            if (e.isEnabled()) {
+            if (e.getCard() != null) {
                 winner = false;
             }
         }
@@ -163,7 +163,7 @@ public class Elevens extends JFrame {
             case "reset":
                 for (CardButton e : cardButtons) {
                     e.clear();
-                    e.setEnabled(true);
+                    e.setEnabled(true); 
                 }
                 deck = new Deck();
                 setCards();
@@ -172,13 +172,16 @@ public class Elevens extends JFrame {
                 int c = 0;
                 int v = 0;
                 for (CardButton e : cardButtons) {
+                    if(e.getCard() == null){
+                        e.setSelected(false);
+                    }
                     if (e.isSelected()) {
                         // System.out.println("Selected: " + e.getCard());
                         c++; // sighs
                         v += e.getPoints();
                     }
                 }
-                if ((c == 2 && v == 11) || (c == 3 && v == 336)) {
+                if ((c == 2 && v == 11) || (c == 3 && v == 436)) {
                     for (CardButton e : cardButtons) {
                         if (e.isSelected()) {
                             e.clear();
@@ -186,9 +189,9 @@ public class Elevens extends JFrame {
                     }
                     setCards();
                 } else {
-                    for (CardButton e : cardButtons) {
+                    // for (CardButton e : cardButtons) {
                         // e.setSelected(false);
-                    }
+                    // }
                 }
 
                 break;

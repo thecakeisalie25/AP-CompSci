@@ -62,6 +62,12 @@ public class Card implements Comparable<Card>
         this.value = value;
     }
 
+    
+    public static ImageIcon getNullIcon() {
+        String path = "src/ch12/elevens/cards/win.PNG";
+        return new ImageIcon(path);
+    }
+
     /**
      * x + y = 11
      * x + y + z = 336
@@ -71,11 +77,13 @@ public class Card implements Comparable<Card>
         if(value <= 10){
             return value;
         }
+        if (value == QUEEN) {
+            return value +200;
+        }
         return value + 100;
     }
 
-    //! Fix method.
-    public ImageIcon getIcon() {
+        public ImageIcon getIcon() {
         String path = "src/ch12/elevens/cards/";
         switch (value) {
             case 1:
