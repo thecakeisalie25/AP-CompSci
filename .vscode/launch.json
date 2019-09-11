@@ -11,6 +11,7 @@
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",
             "stopOnEntry": false,
+            "mainClass": "",
             "args": "",
             "projectName": "temp-workfile"
         },
@@ -20,6 +21,7 @@
             "request": "launch",
             "cwd": "${workspaceFolder}",
             "console": "integratedTerminal",
+            "mainClass": "",
             "stopOnEntry": true
         },
         {
@@ -29,6 +31,7 @@
             "cwd": "${workspaceFolder}",
             "console": "integratedTerminal",
             "internalConsoleOptions": "neverOpen",
+            "mainClass": "",
             "stopOnEntry": false,
         },
         {
@@ -38,6 +41,7 @@
             "cwd": "${workspaceFolder}",
             "console": "externalTerminal",
             "internalConsoleOptions": "neverOpen",
+            "mainClass": "",
             "stopOnEntry": false,
         },
         {

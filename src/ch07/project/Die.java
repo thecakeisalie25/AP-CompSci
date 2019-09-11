@@ -101,6 +101,6 @@ public class Die {
     }
     @Override
     public String toString() {
-        return new Integer(value).toString();
+        return Integer.valueOf(value).toString();
     }
 }

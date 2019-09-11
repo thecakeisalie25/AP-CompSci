@@ -132,7 +132,7 @@ public class Card implements Comparable<Card>
 
     @Override
     public int compareTo(Card e) {
-        return new Integer(seed).compareTo(e.getSeed());
+        return Integer.valueOf(seed).compareTo(e.getSeed());
     }
 
     @Override

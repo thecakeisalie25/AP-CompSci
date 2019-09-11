@@ -47,7 +47,7 @@ public class thirtyfour {
              * 
              * this code ends up removeing every number less than 34 from the list
              */
-            while(test.remove(new Integer(g))){}
+            while(test.remove(Integer.valueOf(g))){}
         }
         /**
          * print the size of the list, which ends up being 15.

@@ -1,58 +1,44 @@
 package ch09.ex06;
 
-import java.awt.Point;
-
 /**
  * Shape
  */
 public abstract class Shape {
 
-    private Point p1;
-    private Point p2;
-    private Point p3;
+    private int length;
+    private int width;
+    private int heigth;
 
-    /**
-     * @return the p3
-     */
-    public Point getP3() {
-        return p3;
+    public Shape(int l, int w, int h) {
+        setLength(l);
+        setWidth(w);
+        setHeigth(h);
     }
 
-    /**
-     * @param p3 the p3 to set
-     */
-    public void setP3(Point p3) {
-        this.p3 = p3;
+    public abstract int calcVolume();
+
+    public int getHeigth() {
+        return heigth;
     }
 
-    /**
-     * @return the p2
-     */
-    public Point getP2() {
-        return p2;
+    public void setHeigth(int heigth) {
+        this.heigth = heigth;
     }
 
-    /**
-     * @param p2 the p2 to set
-     */
-    public void setP2(Point p2) {
-        this.p2 = p2;
+    public int getWidth() {
+        return width;
     }
 
-    /**
-     * @return the p1
-     */
-    public Point getP1() {
-        return p1;
+    public void setWidth(int width) {
+        this.width = width;
     }
 
-    /**
-     * @param p1 the p1 to set
-     */
-    public void setP1(Point p1) {
-        this.p1 = p1;
+    public int getLength() {
+        return length;
     }
 
-    
+    public void setLength(int length) {
+        this.length = length;
+    }
 
 }

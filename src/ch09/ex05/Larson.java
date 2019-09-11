@@ -17,7 +17,7 @@ public class Larson extends Person{
 
     @Override
     public String getNationality() {
-        return "white";
+        return "whitelandian";
     }
 
     
