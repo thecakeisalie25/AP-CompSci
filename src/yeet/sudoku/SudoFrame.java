@@ -116,18 +116,12 @@ public class SudoFrame extends JFrame {
         public void actionPerformed(ActionEvent event) {
             int y = y(Integer.decode(event.getActionCommand()));
             int x = x(Integer.decode(event.getActionCommand()));
-            if(event.getModifiers() == 17){
-                if(board.getTile(x, y).isLocked()){
-                    board.setTile(x, y, board.getTile(x, y).getValue(), false);
-                }
-                else{
-                    board.setTile(x, y, board.getTile(x, y).getValue(), true);
-                }
-            }
             if(board.getTile(x, y).getValue() == 9){
                 board.setTile(x, y, -1, board.getTile(x, y).isLocked());
             }
-            board.setTile(x, y, board.getTile(x, y).getValue()+1, board.getTile(x, y).isLocked());  
+            int v = board.getTile(x, y).getValue()+1;
+            // If v = 0, unlock the tile.
+            board.setTile(x, y, v, v!=0);  
             updateBoard(board);
         }
 
@@ -137,7 +131,10 @@ public class SudoFrame extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent arg0) {
-            System.out.println(board.isValid());
+            if(board.recurse2(board, 0)){
+                updateBoard(SudoBoard.getRecurseCache());
+            }
+            
         }
         
     }
