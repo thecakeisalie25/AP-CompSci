@@ -157,9 +157,6 @@ public class SudoBoard {
         return true;
     }
 
-    public void iterate(){
-        
-    }
 
     public boolean isValid() {
         // #region check horizontal lines
