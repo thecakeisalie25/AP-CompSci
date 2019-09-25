@@ -20,7 +20,7 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class SudoFrame extends JFrame {
 
-    private static final int BORDER_WIDTH = 1;
+    private static final int BORDER_WIDTH = 2;
     private static final Color BORDER_COLOR = new Color(0, 0, 0);
     private static final long serialVersionUID = 1L;
     private JButton[] buttonsArray = new JButton[81];
@@ -86,8 +86,10 @@ public class SudoFrame extends JFrame {
         for (int x = 0; x < 9; x++) {
             for (int y = 0; y < 9; y++) {
                 JButton lButton = buttonsArray[xy2list(x, y)];
-                if (board.getTile(x, y).isLocked()) {
-                    lButton.setBackground(new Color(193, 0, 35));
+                if (board.getTile(x, y).getValue() != 0) {
+                    SudokuTile e = board.getTile(x, y);
+                    Color color = Color.getHSBColor((e.getValue() / 9.0f), .5f , 1f);
+                    lButton.setBackground(color);
                 } else {
                     lButton.setBackground(null);
                     // lButton.setBackground(new Color(0, 170, 255));
@@ -131,10 +133,12 @@ public class SudoFrame extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent arg0) {
-            if(board.recurse2(board, 0)){
+            boolean recursed = board.recurse2(board, 0);
+            if(recursed){
                 updateBoard(SudoBoard.getRecurseCache());
             }
-            
+            System.out.println("done, returned " + recursed);
+            // System.out.println(SudoBoard.isPartialValid(board));
         }
         
     }

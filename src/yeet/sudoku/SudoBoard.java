@@ -102,16 +102,25 @@ public class SudoBoard {
             return recurse2(board, pos + 1);
         }
         for (int i = 1; i < 10; i++) {
-            if (pos < 74) {
-                System.out.println("Setting " + pos + " to " + i + ".");
+            if (pos < 20) {
+                System.out.println("Setting " + (pos+1) + " to " + i + ".");
             }
             board.setTile(x, y, i, false);
+            if(!isPartialValid(board)){
+                System.out.println("Invalid, skipping.");
+                // If we fail, reset the board after this pos
+                for (int j = pos+1; j < 81; j++) {
+                    if(!board.getTile(SudoFrame.x(j), SudoFrame.y(j)).isLocked()){
+                        board.setTile(SudoFrame.x(j), SudoFrame.y(j), 0, false);
+                    }
+                }
+                continue;
+            }
             boolean doRecurse = recurse2(board, pos + 1);
             if (doRecurse) {
                 recurseBoard = board;
                 return true;
             }
-            ;
         }
         return false;
     }
@@ -120,8 +129,9 @@ public class SudoBoard {
         return board;
     }
 
-    public boolean isPartialValid() {
+    public static boolean isPartialValid(SudoBoard boardin) {
         // #region check horizontal lines
+        SudokuTile[][] board = boardin.getBoard();
         for (SudokuTile[] e : board) {
             boolean[] rowValues = new boolean[9];
             // #region 9 falses
@@ -131,32 +141,55 @@ public class SudoBoard {
             // #endregion
             for (SudokuTile f : e) {
                 // if value is in array, we had the same num on 1 line, so fail
-                if (f.getValue() != 0) {
-                    if (rowValues[f.getValue() - 1] /* || f.getValue() == 0 */) {
-                        return false;
-                    }
-                    // otherwise, put value in array
-                    rowValues[f.getValue() - 1] = true;
+                if(f.getValue()!=0){
+                   if (/*f.getValue() == 0 ||*/ rowValues[f.getValue() - 1]) {
+                       return false;
+                   }
+                   // otherwise, put value in array
+                   rowValues[f.getValue() - 1] = true;
                 }
             }
         }
         // #endregion
         for (int col = 0; col < 9; col++) {
             boolean[] rowValues = new boolean[9];
+            for (int i = 0; i < 9; i++) {
+                rowValues[i] = false;
+            }
             for (int row = 0; row < 9; row++) {
                 // if value is in array, we had the same num on 1 line, so fail
-                if (board[row][col].getValue() != 0) {
-                    if (rowValues[board[row][col].getValue() + 1] /* || board[row][col].getValue() == 0 */) {
+                if(board[row][col].getValue() != 0){
+                    if (/*board[row][col].getValue() == 0 || */rowValues[board[row][col].getValue() - 1]) {
                         return false;
                     }
                     // otherwise, put value in array
-                    rowValues[board[row][col].getValue() + 1] = true;
+                    rowValues[board[row][col].getValue() - 1] = true;
+                }
+            }
+        }
+        // test squares
+        boolean[][] sqValues = new boolean[9][9];
+        int[][] boardTiles = {
+            {0,0,0,1,1,1,2,2,2},
+            {0,0,0,1,1,1,2,2,2},
+            {0,0,0,1,1,1,2,2,2},
+            {3,3,3,4,4,4,5,5,5},
+            {3,3,3,4,4,4,5,5,5},
+            {3,3,3,4,4,4,5,5,5},
+            {6,6,6,7,7,7,8,8,8},
+            {6,6,6,7,7,7,8,8,8},
+            {6,6,6,7,7,7,8,8,8},
+        };
+        for (int x = 0; x < 9; x++) {
+            for (int y = 0; y < 9; y++) {
+                if(board[x][y].getValue()!=0){
+                    if(sqValues[boardTiles [x] [y] ] [board [x] [y] .getValue()-1]) return false;
+                    sqValues[boardTiles[x][y]][board[x][y].getValue()-1] = true;
                 }
             }
         }
         return true;
-    }
-
+    }    
 
     public boolean isValid() {
         // #region check horizontal lines
