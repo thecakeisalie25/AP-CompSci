@@ -27,7 +27,7 @@ public class SudoFrame extends JFrame {
     private SudoBoard board;
 
     public SudoFrame() {
-        super();
+        super("Sudoku");
         GridLayout grid = new GridLayout(9, 9);
         //#region
         try {
@@ -43,7 +43,6 @@ public class SudoFrame extends JFrame {
         JPanel gridpanel = new JPanel(grid);
         JButton buttonDo = new JButton("do the thing");
         buttonDo.setActionCommand("do");
-        buttonDo.addActionListener(new DoListener());
         pane.setLayout(border);
         add(gridpanel, BorderLayout.CENTER);
         add(buttonDo, BorderLayout.PAGE_END);
@@ -53,6 +52,8 @@ public class SudoFrame extends JFrame {
             buttonsArray[i].setActionCommand(i + "");
             gridpanel.add(buttonsArray[i]);
         }
+        buttonDo.setMinimumSize(new Dimension(200, 200));
+        buttonDo.addActionListener(new DoListener());
         setMinimumSize(new Dimension(512, 512));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
@@ -119,7 +120,7 @@ public class SudoFrame extends JFrame {
             int y = y(Integer.decode(event.getActionCommand()));
             int x = x(Integer.decode(event.getActionCommand()));
             if(board.getTile(x, y).getValue() == 9){
-                board.setTile(x, y, -1, board.getTile(x, y).isLocked());
+                board.setTile(x, y, -1, false);
             }
             int v = board.getTile(x, y).getValue()+1;
             // If v = 0, unlock the tile.
@@ -133,12 +134,14 @@ public class SudoFrame extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent arg0) {
+            long ms = System.currentTimeMillis();
+            System.out.println(SudoBoard.isPartialValid(board));
             boolean recursed = board.recurse2(board, 0);
             if(recursed){
                 updateBoard(SudoBoard.getRecurseCache());
             }
+            System.out.println(System.currentTimeMillis() - ms);
             System.out.println("done, returned " + recursed);
-            // System.out.println(SudoBoard.isPartialValid(board));
         }
         
     }

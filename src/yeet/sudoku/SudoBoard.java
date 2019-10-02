@@ -22,44 +22,20 @@ public class SudoBoard {
 
     private static SudoBoard recurseBoard = new SudoBoard();
 
-    public static SudoBoard validBoardFactory() {
-        SudokuTile[][] board = {
-                { new SudokuTile(1, false), new SudokuTile(2, false), new SudokuTile(3, false),
-                        new SudokuTile(4, false), new SudokuTile(5, false), new SudokuTile(6, false),
-                        new SudokuTile(7, false), new SudokuTile(8, false), new SudokuTile(9, false) },
-                { new SudokuTile(7, false), new SudokuTile(8, false), new SudokuTile(9, false),
-                        new SudokuTile(1, false), new SudokuTile(2, false), new SudokuTile(3, false),
-                        new SudokuTile(4, false), new SudokuTile(5, false), new SudokuTile(6, false) },
-                { new SudokuTile(4, false), new SudokuTile(5, false), new SudokuTile(6, false),
-                        new SudokuTile(7, false), new SudokuTile(8, false), new SudokuTile(9, false),
-                        new SudokuTile(1, false), new SudokuTile(2, false), new SudokuTile(3, false) },
-                { new SudokuTile(3, false), new SudokuTile(1, false), new SudokuTile(2, false),
-                        new SudokuTile(8, false), new SudokuTile(4, false), new SudokuTile(5, false),
-                        new SudokuTile(9, false), new SudokuTile(6, false), new SudokuTile(7, false) },
-                { new SudokuTile(6, false), new SudokuTile(9, false), new SudokuTile(7, false),
-                        new SudokuTile(3, false), new SudokuTile(1, false), new SudokuTile(2, false),
-                        new SudokuTile(8, false), new SudokuTile(4, false), new SudokuTile(5, false) },
-                { new SudokuTile(8, false), new SudokuTile(4, false), new SudokuTile(5, false),
-                        new SudokuTile(6, false), new SudokuTile(9, false), new SudokuTile(7, false),
-                        new SudokuTile(3, false), new SudokuTile(1, false), new SudokuTile(2, false) },
-                { new SudokuTile(2, false), new SudokuTile(3, false), new SudokuTile(1, false),
-                        new SudokuTile(5, false), new SudokuTile(7, false), new SudokuTile(4, false),
-                        new SudokuTile(6, false), new SudokuTile(9, false), new SudokuTile(8, false) },
-                { new SudokuTile(9, false), new SudokuTile(6, false), new SudokuTile(8, false),
-                        new SudokuTile(2, false), new SudokuTile(3, false), new SudokuTile(1, false),
-                        new SudokuTile(5, false), new SudokuTile(7, false), new SudokuTile(4, false) },
-                { new SudokuTile(5, false), new SudokuTile(7, false), new SudokuTile(4, false),
-                        new SudokuTile(9, false), new SudokuTile(6, false), new SudokuTile(8, false),
-                        new SudokuTile(2, false), new SudokuTile(3, false), new SudokuTile(1, false) }, };
-        return new SudoBoard(board);
-    }
-
     public static SudoBoard getRecurseCache() {
         return recurseBoard;
     }
 
     public SudoBoard(SudokuTile[][] board) {
         this.board = board;
+    }
+
+    public SudoBoard(SudoBoard copy) {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                board[i][j] = new SudokuTile(copy.getTile(i, j));
+            }
+        }
     }
 
     public SudoBoard modifiedBoard(int val, int x, int y) {
@@ -95,6 +71,7 @@ public class SudoBoard {
     public boolean recurse2(SudoBoard board, int pos) {
         int x = SudoFrame.x(pos);
         int y = SudoFrame.y(pos);
+        System.out.println(pos + " " + isPartialValid(board));
         if (pos == 81) {
             return board.isValid();
         }
@@ -102,20 +79,26 @@ public class SudoBoard {
             return recurse2(board, pos + 1);
         }
         for (int i = 1; i < 10; i++) {
-            if (pos < 20) {
-                System.out.println("Setting " + (pos+1) + " to " + i + ".");
-            }
+            // reset board after this
+            // if (pos < 20) {
+            // System.out.println("Setting " + (pos + 1) + " to " + i + ".");
+            // }
             board.setTile(x, y, i, false);
-            if(!isPartialValid(board)){
-                System.out.println("Invalid, skipping.");
+            if (!isPartialValid(board)) {
+                // System.out.println("Invalid, skipping.");
                 // If we fail, reset the board after this pos
-                for (int j = pos+1; j < 81; j++) {
-                    if(!board.getTile(SudoFrame.x(j), SudoFrame.y(j)).isLocked()){
+                for (int j = pos; j < 81; j++) {
+                    if (!board.getTile(SudoFrame.x(j), SudoFrame.y(j)).isLocked()) {
                         board.setTile(SudoFrame.x(j), SudoFrame.y(j), 0, false);
                     }
                 }
                 continue;
             }
+            // for (int j = pos + 1; j < 81; j++) {
+            // if (!board.getTile(SudoFrame.x(j), SudoFrame.y(j)).isLocked()) {
+            // board.setTile(SudoFrame.x(j), SudoFrame.y(j), 0, false);
+            // }
+            // }
             boolean doRecurse = recurse2(board, pos + 1);
             if (doRecurse) {
                 recurseBoard = board;
@@ -141,12 +124,12 @@ public class SudoBoard {
             // #endregion
             for (SudokuTile f : e) {
                 // if value is in array, we had the same num on 1 line, so fail
-                if(f.getValue()!=0){
-                   if (/*f.getValue() == 0 ||*/ rowValues[f.getValue() - 1]) {
-                       return false;
-                   }
-                   // otherwise, put value in array
-                   rowValues[f.getValue() - 1] = true;
+                if (f.getValue() != 0) {
+                    if (/* f.getValue() == 0 || */ rowValues[f.getValue() - 1]) {
+                        return false;
+                    }
+                    // otherwise, put value in array
+                    rowValues[f.getValue() - 1] = true;
                 }
             }
         }
@@ -158,8 +141,8 @@ public class SudoBoard {
             }
             for (int row = 0; row < 9; row++) {
                 // if value is in array, we had the same num on 1 line, so fail
-                if(board[row][col].getValue() != 0){
-                    if (/*board[row][col].getValue() == 0 || */rowValues[board[row][col].getValue() - 1]) {
+                if (board[row][col].getValue() != 0) {
+                    if (/* board[row][col].getValue() == 0 || */rowValues[board[row][col].getValue() - 1]) {
                         return false;
                     }
                     // otherwise, put value in array
@@ -169,27 +152,21 @@ public class SudoBoard {
         }
         // test squares
         boolean[][] sqValues = new boolean[9][9];
-        int[][] boardTiles = {
-            {0,0,0,1,1,1,2,2,2},
-            {0,0,0,1,1,1,2,2,2},
-            {0,0,0,1,1,1,2,2,2},
-            {3,3,3,4,4,4,5,5,5},
-            {3,3,3,4,4,4,5,5,5},
-            {3,3,3,4,4,4,5,5,5},
-            {6,6,6,7,7,7,8,8,8},
-            {6,6,6,7,7,7,8,8,8},
-            {6,6,6,7,7,7,8,8,8},
-        };
+        int[][] boardTiles = { { 0, 0, 0, 1, 1, 1, 2, 2, 2 }, { 0, 0, 0, 1, 1, 1, 2, 2, 2 },
+                { 0, 0, 0, 1, 1, 1, 2, 2, 2 }, { 3, 3, 3, 4, 4, 4, 5, 5, 5 }, { 3, 3, 3, 4, 4, 4, 5, 5, 5 },
+                { 3, 3, 3, 4, 4, 4, 5, 5, 5 }, { 6, 6, 6, 7, 7, 7, 8, 8, 8 }, { 6, 6, 6, 7, 7, 7, 8, 8, 8 },
+                { 6, 6, 6, 7, 7, 7, 8, 8, 8 }, };
         for (int x = 0; x < 9; x++) {
             for (int y = 0; y < 9; y++) {
-                if(board[x][y].getValue()!=0){
-                    if(sqValues[boardTiles [x] [y] ] [board [x] [y] .getValue()-1]) return false;
-                    sqValues[boardTiles[x][y]][board[x][y].getValue()-1] = true;
+                if (board[x][y].getValue() != 0) {
+                    if (sqValues[boardTiles[x][y]][board[x][y].getValue() - 1])
+                        return false;
+                    sqValues[boardTiles[x][y]][board[x][y].getValue() - 1] = true;
                 }
             }
         }
         return true;
-    }    
+    }
 
     public boolean isValid() {
         // #region check horizontal lines
@@ -223,21 +200,15 @@ public class SudoBoard {
         }
         // test squares
         boolean[][] sqValues = new boolean[9][9];
-        int[][] boardTiles = {
-            {0,0,0,1,1,1,2,2,2},
-            {0,0,0,1,1,1,2,2,2},
-            {0,0,0,1,1,1,2,2,2},
-            {3,3,3,4,4,4,5,5,5},
-            {3,3,3,4,4,4,5,5,5},
-            {3,3,3,4,4,4,5,5,5},
-            {6,6,6,7,7,7,8,8,8},
-            {6,6,6,7,7,7,8,8,8},
-            {6,6,6,7,7,7,8,8,8},
-        };
+        int[][] boardTiles = { { 0, 0, 0, 1, 1, 1, 2, 2, 2 }, { 0, 0, 0, 1, 1, 1, 2, 2, 2 },
+                { 0, 0, 0, 1, 1, 1, 2, 2, 2 }, { 3, 3, 3, 4, 4, 4, 5, 5, 5 }, { 3, 3, 3, 4, 4, 4, 5, 5, 5 },
+                { 3, 3, 3, 4, 4, 4, 5, 5, 5 }, { 6, 6, 6, 7, 7, 7, 8, 8, 8 }, { 6, 6, 6, 7, 7, 7, 8, 8, 8 },
+                { 6, 6, 6, 7, 7, 7, 8, 8, 8 }, };
         for (int x = 0; x < 9; x++) {
             for (int y = 0; y < 9; y++) {
-                if(sqValues[boardTiles[x][y]][board[x][y].getValue()-1]) return false;
-                sqValues[boardTiles[x][y]][board[x][y].getValue()-1] = true;
+                if (sqValues[boardTiles[x][y]][board[x][y].getValue() - 1])
+                    return false;
+                sqValues[boardTiles[x][y]][board[x][y].getValue() - 1] = true;
             }
         }
         return true;

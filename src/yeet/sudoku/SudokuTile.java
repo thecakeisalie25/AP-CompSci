@@ -14,6 +14,12 @@ public class SudokuTile {
         this.value = value;
     }
 
+    public SudokuTile(SudokuTile copy) {
+        super();
+        this.locked = copy.isLocked();
+        this.value = copy.getValue();
+    }
+
     public int getValue() {
         return value;
     }
